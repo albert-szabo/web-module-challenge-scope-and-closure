@@ -31,10 +31,17 @@ console.log('example task:', processFirstItem(['foo','bar'],function(str){return
   
   1. What is the difference between counter1 and counter2?
   
+      Counter1 has the count variable in function scope, while counter2 has the count variable in global scope.
+
   2. Which of the two uses a closure? How can you tell?
   
+      Counter2 uses a closure. I can tell because the counter2 function reaches outside of its scope to find the count variable because it does not exist inside of the function's scope.
+
   3. In what scenario would the counter1 code be preferable? In what scenario would 
-     counter2 be better?  
+     counter2 be better?
+
+      Counter1 would be better in a scenario where we never needed or wanted to reassign the count variable and just wanted to repeatedly invoke the function to increment the value of count. Counter2 would be better in a scenario where we may want to reassign the count variable later on.
+
 */
 
 // counter1 code
@@ -64,8 +71,8 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+    return Math.floor(Math.random() * 3);
 }
 
 
@@ -83,8 +90,17 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*Code Here*/){
-  /*Code Here*/
+function finalScore(inning, inningsToPlay){
+  let homeScore = 0;
+  let awayScore = 0;
+  for (let i=0; i < inning; i++) {
+    homeScore = homeScore + inning();
+    awayScore = awayScore + inning();
+  }
+  return {
+    Home: homeScore,
+    Away: awayScore
+  }
 }
 
 
